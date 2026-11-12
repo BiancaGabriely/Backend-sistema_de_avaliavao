@@ -1,0 +1,24 @@
+{
+  "name": "backendsistemas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BiancaGabriely/Backend-sistema_de_avaliavao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/BiancaGabriely/Backend-sistema_de_avaliavao/issues"
+  },
+  "homepage": "https://github.com/BiancaGabriely/Backend-sistema_de_avaliavao#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
