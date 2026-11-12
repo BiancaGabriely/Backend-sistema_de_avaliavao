@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/BiancaGabriely/Backend-sistema_de_avaliavao#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.3.0"
   }
 }

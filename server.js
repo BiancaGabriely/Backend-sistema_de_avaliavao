@@ -1,6 +1,8 @@
 import express from "express"
+import cors from "cors"
 
 const app = express()
+app.use(cors());
 app.use(express.json());
 
 const alunos =[
@@ -24,8 +26,7 @@ const alunos =[
     }
 ]
 
-
-app.get('/alunos', async (req,res) => {
+app.get('/alunos', (req,res) => {
     res.json(alunos);
 })
 
@@ -34,12 +35,47 @@ app.get('/alunos/:matricula', (req, res) => {
     return res.json(aluno)
 })
 
-app.listen(3000, () => {
-    console.log("Servidor rodando.")
+app.post('/alunos/', (req,res) => {
+    const novoAluno = {
+        id:req.body.id,
+        matricula: req.body.matricula,
+        nome: req.body.nome,
+        turma: req.body.turma,
+        opcaoNota: req.body.opcaoNota,
+        nota1: req.body.nota1,
+        nota2: req.body.nota2
+    }
+
+    alunos.push(novoAluno);
+
+    return res.json({message: "Aluno cadastrado", novoAluno});
 })
 
 app.delete('/alunos/:matricula', (req,res) => {
-    const aluno = alunos.findIndex(aluno => a.matricula == id);
+    const aluno = alunos.findIndex(a => a.matricula === req.params.matricula);
+
+    alunos.splice(aluno, 1);
+
     return res.json({message: "removido"})
 })
 
+app.put('/alunos/:matricula', (req,res) => {
+    const aluno = alunos.find(a => a.matricula === req.params.matricula);
+
+    if(!aluno){
+        return res.status(404).json({message:"Aluno não encontrado."});
+        
+    }
+
+    aluno.nome = req.body.nome;
+    aluno.turma = req.body.turma;
+    aluno.opcaoNota = req.body.opcaoNota;
+    aluno.nota1 = req.body.nota1;
+    aluno.nota2 = req.body.nota2;
+
+    return res.json({message: "Aluno atualizado", aluno});
+})
+
+app.listen(3000, () => {
+    console.log("Servidor rodando.")
+})
